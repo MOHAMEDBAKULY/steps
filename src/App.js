@@ -12,6 +12,15 @@ const messages = [
 ];
 
 export default function App() {
+  return (
+    <div>
+      <Steps />
+      <Steps />
+    </div>
+  );
+}
+
+function Steps() {
   const [msg, setMsg] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
   // const [test, setTest] = useState({ name: "Bakuly" });
@@ -25,8 +34,8 @@ export default function App() {
   };
 
   return (
-    <>
-      <button onClick={() => setIsOpen(!isOpen)} className="close">
+    <div>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
 
@@ -65,6 +74,6 @@ export default function App() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
