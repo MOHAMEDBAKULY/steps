@@ -15,20 +15,28 @@ export default function App() {
   return (
     <div>
       <Steps />
+      <StepMessage step={3}>
+        <p>How to make reusable components in react</p>
+        <p>😅</p>
+      </StepMessage>
+      <StepMessage step={2}>
+        <p> The children trick in React is useful</p>
+        <p>😎</p>
+      </StepMessage>
     </div>
   );
 }
 
 function Steps() {
-  const [msg, setMsg] = useState(1);
+  const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
   // const [test, setTest] = useState({ name: "Bakuly" });
 
   const handlePrevious = () => {
-    if (msg > 1) setMsg((m) => m - 1);
+    if (step > 1) setStep((m) => m - 1);
   };
   const handleForward = () => {
-    if (msg < 8) setMsg((m) => m + 1);
+    if (step < 8) setStep((m) => m + 1);
   };
 
   return (
@@ -40,19 +48,17 @@ function Steps() {
       {isOpen && (
         <div className="steps">
           <div className="numbers">
-            <span className={msg >= 1 ? "active" : ""}>1</span>
-            <span className={msg >= 2 ? "active" : ""}>2</span>
-            <span className={msg >= 3 ? "active" : ""}>3</span>
-            <span className={msg >= 4 ? "active" : ""}>4</span>
-            <span className={msg >= 5 ? "active" : ""}>5</span>
-            <span className={msg >= 6 ? "active" : ""}>6</span>
-            <span className={msg >= 7 ? "active" : ""}>7</span>
-            <span className={msg >= 8 ? "active" : ""}>8</span>
+            <span className={step >= 1 ? "active" : ""}>1</span>
+            <span className={step >= 2 ? "active" : ""}>2</span>
+            <span className={step >= 3 ? "active" : ""}>3</span>
+            <span className={step >= 4 ? "active" : ""}>4</span>
+            <span className={step >= 5 ? "active" : ""}>5</span>
+            <span className={step >= 6 ? "active" : ""}>6</span>
+            <span className={step >= 7 ? "active" : ""}>7</span>
+            <span className={step >= 8 ? "active" : ""}>8</span>
           </div>
 
-          <div className="message">
-            Steps {msg}: {messages[msg - 1]}
-          </div>
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
 
           <div className="buttons">
             <Button textColor="#000" bgColor="#55ffee" onClick={handlePrevious}>
@@ -64,6 +70,15 @@ function Steps() {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function StepMessage({ step, children }) {
+  return (
+    <div className="message">
+      <h4>step {step}</h4>
+      {children}
     </div>
   );
 }
