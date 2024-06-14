@@ -58,7 +58,22 @@ function Steps() {
             <span className={step >= 8 ? "active" : ""}>8</span>
           </div>
 
-          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
+          <StepMessage step={step}>
+            {messages[step - 1]}
+            <div className="buttons">
+              <Button
+                textColor="#000"
+                bgColor="#84ff22"
+                onClick={() =>
+                  alert(
+                    `Do not disturb this is a Child prop ${messages[step - 1]}`
+                  )
+                }
+              >
+                React Children Props
+              </Button>
+            </div>
+          </StepMessage>
 
           <div className="buttons">
             <Button textColor="#000" bgColor="#55ffee" onClick={handlePrevious}>
